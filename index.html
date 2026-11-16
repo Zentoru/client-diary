@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Diary</title>
+<meta name="description" content="Client Diary — дневник за работа с клиенти: карти, график, посещения и доход. Android, без интернет.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root {
+    --bg: #070b16;
+    --surface: #0f1626;
+    --surface-2: #151e33;
+    --text: #e8ecf6;
+    --muted: #9aa6c0;
+    --accent: #2f7dff;
+    --accent-2: #63a4ff;
+    --line: #22304d;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(47, 125, 255, .22), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(47, 125, 255, .12), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  }
+  a { color: var(--accent-2); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header.top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; gap: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  .langs { display: flex; gap: 4px; flex-wrap: wrap; }
+  .langs button {
+    background: transparent; color: var(--muted); border: 1px solid var(--line);
+    border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 14px; cursor: pointer;
+  }
+  .langs button[aria-pressed="true"] { color: var(--text); border-color: var(--accent); background: rgba(47,125,255,.15); }
+
+  .hero {
+    display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center;
+    padding: 40px 0 56px;
+  }
+  .hero-icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 12px 40px rgba(47,125,255,.35); }
+  h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 20px 0 12px; letter-spacing: -.02em; }
+  .lead { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 34em; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(180deg, var(--accent-2), var(--accent));
+    color: #fff; text-decoration: none; font-weight: 700; font-size: 17px;
+    padding: 14px 24px; border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(47,125,255,.35);
+  }
+  .btn:hover { filter: brightness(1.07); }
+  .btn svg { width: 22px; height: 22px; }
+  .meta { color: var(--muted); font-size: 14px; }
+  .hero-shot { justify-self: center; }
+
+  .phone {
+    width: 100%; max-width: 270px; border-radius: 28px; padding: 8px;
+    background: #05070d; border: 1px solid var(--line);
+    box-shadow: 0 30px 80px rgba(0,0,0,.55);
+  }
+  .phone img { display: block; width: 100%; border-radius: 21px; }
+
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 28px; margin: 0 0 24px; letter-spacing: -.01em; }
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px;
+  }
+  .card .ico {
+    width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+    background: rgba(47,125,255,.16); color: var(--accent-2); margin-bottom: 12px;
+  }
+  .card .ico svg { width: 22px; height: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  .shots {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  .shots figure { margin: 0; }
+  .shots figcaption { color: var(--muted); font-size: 14px; text-align: center; margin-top: 10px; }
+
+  .steps { counter-reset: step; display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
+  .steps li {
+    counter-increment: step; position: relative; padding: 16px 16px 16px 60px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 16px; top: 14px;
+    width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--accent); color: #fff; font-weight: 700;
+  }
+  .note {
+    margin-top: 16px; padding: 16px; border-radius: var(--radius);
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); font-size: 15px;
+  }
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; padding-top: 24px; }
+    .features { grid-template-columns: 1fr 1fr; }
+    .shots { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    .features { grid-template-columns: 1fr; }
+    .shots { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><img src="assets/icon.png" alt="">Client Diary</div>
+    <nav class="langs" aria-label="Language">
+      <button data-lang="bg">BG</button>
+      <button data-lang="ru">RU</button>
+      <button data-lang="uk">UA</button>
+      <button data-lang="en">EN</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <img class="hero-icon" src="assets/icon.png" alt="Client Diary">
+        <h1 data-t="title"></h1>
+        <p class="lead" data-t="lead"></p>
+        <div class="cta">
+          <a class="btn" id="download" href="#">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5.5 5.5 1.41 1.41L11 5.83V16h2V5.83l3.09 3.08L17.5 7.5 12 2z" transform="rotate(180 12 11)"/></svg>
+            <span data-t="download"></span>
+          </a>
+          <span class="meta" data-t="meta"></span>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <div class="phone"><img src="assets/bg/schedule.png" alt="" data-shot="schedule" data-alt="shotSchedule"></div>
+      </div>
+    </div>
+
+    <section>
+      <h2 data-t="featuresTitle"></h2>
+      <div class="features">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg></div>
+          <h3 data-t="f1t"></h3><p data-t="f1"></p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg></div>
+          <h3 data-t="f2t"></h3><p data-t="f2"></p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <h3 data-t="f3t"></h3><p data-t="f3"></p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div>
+          <h3 data-t="f4t"></h3><p data-t="f4"></p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></div>
+          <h3 data-t="f5t"></h3><p data-t="f5"></p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg></div>
+          <h3 data-t="f6t"></h3><p data-t="f6"></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-t="shotsTitle"></h2>
+      <div class="shots">
+        <figure><div class="phone"><img src="assets/bg/schedule.png" alt="" data-shot="schedule" data-alt="shotSchedule" loading="lazy"></div><figcaption data-t="shotSchedule"></figcaption></figure>
+        <figure><div class="phone"><img src="assets/bg/event.png" alt="" data-shot="event" data-alt="shotEvent" loading="lazy"></div><figcaption data-t="shotEvent"></figcaption></figure>
+        <figure><div class="phone"><img src="assets/bg/profile.png" alt="" data-shot="profile" data-alt="shotProfile" loading="lazy"></div><figcaption data-t="shotProfile"></figcaption></figure>
+        <figure><div class="phone"><img src="assets/bg/analytics.png" alt="" data-shot="analytics" data-alt="shotAnalytics" loading="lazy"></div><figcaption data-t="shotAnalytics"></figcaption></figure>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2 data-t="installTitle"></h2>
+      <ol class="steps">
+        <li data-t="s1"></li>
+        <li data-t="s2"></li>
+        <li data-t="s3"></li>
+      </ol>
+      <p class="note" data-t="note"></p>
+    </section>
+  </main>
+
+  <footer><span data-t="footer"></span> · <a data-t="privacy" href="privacy.html"></a></footer>
+</div>
+
+<script>
+  // Shown until version.json (the same file the app checks) has loaded.
+  let version = '1.0.0';
+  const SIZE = '22 MB';
+  const T = {
+    bg: {
+      title: 'Дневник на клиентите — в телефона',
+      lead: 'Клиенти, карти, график, посещения и доход на едно място. За треньори, масажисти, фризьори и всички, които работят с клиенти. Работи без интернет.',
+      download: 'Изтегли за Android',
+      meta: 'Версия {v} · ' + SIZE + ' · Android 7+',
+      featuresTitle: 'Какво умее',
+      f1t: 'Клиенти и карти', f1: 'Карти по ваши шаблони: срок, лимит на посещенията, замразяване. Приложението брои оставащите посещения и показва кои карти изтичат скоро.',
+      f2t: 'График и събития', f2: 'Лични записи, седмични групови занятия с места, масажи и други видове записи в цвят. Можете да си запазите почивка.',
+      f3t: 'Отбележи с 2 докосвания', f3: 'Екранът „Днес“ показва записите за деня. „Отбележи“ сваля посещението от картата или го записва като еднократно.',
+      f4t: 'Моят доход', f4: 'Продажби, посещения и вашият процент за ден, седмица, месец или избран период.',
+      f5t: 'Напомняния', f5: 'Известие преди записите и груповите занятия — точно когато ви трябва.',
+      f6t: 'Данните са ваши', f6: 'Без регистрация, реклами и сървъри: всичко е само на телефона. Резервно копие във файл и експорт в Excel (CSV).',
+      shotsTitle: 'Как изглежда',
+      shotSchedule: 'График за деня', shotEvent: 'Групово занятие', shotProfile: 'Профил и карти', shotAnalytics: 'Анализи',
+      installTitle: 'Как да инсталирате',
+      s1: 'Натиснете „Изтегли за Android“ на телефона си и изчакайте файла.',
+      s2: 'Отворете изтегления файл. Ако телефонът попита, разрешете „Инсталиране от неизвестни източници“ за браузъра или „Файлове“. Ако Play Protect предупреди за непознато приложение — „Още подробности“ → „Инсталирай въпреки това“.',
+      s3: 'Натиснете „Инсталирай“ и отворете Client Diary.',
+      note: 'Приложението все още не е в Google Play, затова се инсталира от файл. Новите версии се инсталират върху старата — данните остават. Езици: български, руски, украински, английски.',
+      footer: 'Client Diary · автор Zentoru · безплатно и без реклами',
+      privacy: 'Политика за поверителност'
+    },
+    ru: {
+      title: 'Дневник клиентов — в телефоне',
+      lead: 'Клиенты, абонементы, график, посещения и доход в одном месте. Для тренеров, массажистов, парикмахеров и всех, кто работает с клиентами. Работает без интернета.',
+      download: 'Скачать для Android',
+      meta: 'Версия {v} · ' + SIZE + ' · Android 7+',
+      featuresTitle: 'Что умеет',
+      f1t: 'Клиенты и карты', f1: 'Абонементы по вашим шаблонам: срок, лимит посещений, заморозка. Приложение считает остаток и подсвечивает карты, которые скоро закончатся.',
+      f2t: 'График и события', f2: 'Личные записи, еженедельные групповые занятия с местами, массажи и другие виды записей в цвете. Можно поставить себе отдых.',
+      f3t: 'Отметка в 2 нажатия', f3: 'Экран «Сегодня» показывает записи на день. «Отметить» спишет посещение с карты или запишет разовое.',
+      f4t: 'Мой доход', f4: 'Продажи, посещения и ваш процент за день, неделю, месяц или выбранный период.',
+      f5t: 'Напоминания', f5: 'Уведомление перед записями и групповыми занятиями — заранее, как вам удобно.',
+      f6t: 'Данные — ваши', f6: 'Без регистрации, рекламы и серверов: всё хранится только в телефоне. Бэкап в файл и экспорт в Excel (CSV).',
+      shotsTitle: 'Как это выглядит',
+      shotSchedule: 'График на день', shotEvent: 'Групповое занятие', shotProfile: 'Профиль и карты', shotAnalytics: 'Аналитика',
+      installTitle: 'Как установить',
+      s1: 'Нажмите «Скачать для Android» на телефоне и дождитесь загрузки файла.',
+      s2: 'Откройте скачанный файл. Если телефон спросит — разрешите «Установку из неизвестных источников» для браузера или «Файлов». Если Play Protect предупредит о незнакомом приложении — «Подробнее» → «Всё равно установить».',
+      s3: 'Нажмите «Установить» и откройте Client Diary.',
+      note: 'Приложения пока нет в Google Play, поэтому оно ставится из файла. Новые версии устанавливаются поверх старой — данные сохраняются. Языки: болгарский, русский, украинский, английский.',
+      footer: 'Client Diary · автор Zentoru · бесплатно и без рекламы',
+      privacy: 'Политика конфиденциальности'
+    },
+    uk: {
+      title: 'Щоденник клієнтів — у телефоні',
+      lead: 'Клієнти, абонементи, графік, відвідування та дохід в одному місці. Для тренерів, масажистів, перукарів і всіх, хто працює з клієнтами. Працює без інтернету.',
+      download: 'Завантажити для Android',
+      meta: 'Версія {v} · ' + SIZE + ' · Android 7+',
+      featuresTitle: 'Що вміє',
+      f1t: 'Клієнти та картки', f1: 'Абонементи за вашими шаблонами: строк, ліміт відвідувань, заморожування. Застосунок рахує залишок і підсвічує картки, що скоро закінчаться.',
+      f2t: 'Графік і події', f2: 'Особисті записи, щотижневі групові заняття з місцями, масажі та інші види записів у кольорі. Можна поставити собі відпочинок.',
+      f3t: 'Відмітка за 2 дотики', f3: 'Екран «Сьогодні» показує записи на день. «Відмітити» спише відвідування з картки або запише разове.',
+      f4t: 'Мій дохід', f4: 'Продажі, відвідування та ваш відсоток за день, тиждень, місяць або вибраний період.',
+      f5t: 'Нагадування', f5: 'Сповіщення перед записами та груповими заняттями — заздалегідь, як вам зручно.',
+      f6t: 'Дані — ваші', f6: 'Без реєстрації, реклами й серверів: усе зберігається лише в телефоні. Резервна копія у файл та експорт в Excel (CSV).',
+      shotsTitle: 'Як це виглядає',
+      shotSchedule: 'Графік на день', shotEvent: 'Групове заняття', shotProfile: 'Профіль і картки', shotAnalytics: 'Аналітика',
+      installTitle: 'Як встановити',
+      s1: 'Натисніть «Завантажити для Android» на телефоні й дочекайтеся завантаження файлу.',
+      s2: 'Відкрийте завантажений файл. Якщо телефон запитає — дозвольте «Встановлення з невідомих джерел» для браузера або «Файлів». Якщо Play Protect попередить про незнайомий застосунок — «Докладніше» → «Однаково встановити».',
+      s3: 'Натисніть «Встановити» й відкрийте Client Diary.',
+      note: 'Застосунку поки немає в Google Play, тому він встановлюється з файлу. Нові версії встановлюються поверх старої — дані зберігаються. Мови: болгарська, російська, українська, англійська.',
+      footer: 'Client Diary · автор Zentoru · безкоштовно й без реклами',
+      privacy: 'Політика конфіденційності'
+    },
+    en: {
+      title: 'Your client diary, in your phone',
+      lead: 'Clients, passes, schedule, visits and income in one place. For trainers, massage therapists, hairdressers and anyone who works with clients. Works offline.',
+      download: 'Download for Android',
+      meta: 'Version {v} · ' + SIZE + ' · Android 7+',
+      featuresTitle: 'What it does',
+      f1t: 'Clients and passes', f1: 'Passes from your own templates: term, visit limit, freezes. The app counts what is left and highlights passes that end soon.',
+      f2t: 'Schedule and events', f2: 'Personal bookings, weekly group classes with places, massages and other kinds of entries in colour. Block time for a rest.',
+      f3t: 'Mark a visit in 2 taps', f3: 'Today shows the day\'s bookings. "Mark" takes the visit off a pass or records a single visit.',
+      f4t: 'My income', f4: 'Sales, visits and your share for a day, week, month or any period.',
+      f5t: 'Reminders', f5: 'A notification before bookings and group classes, as early as you like.',
+      f6t: 'Your data stays yours', f6: 'No sign-up, ads or servers: everything stays on the phone. Backup to a file and export to Excel (CSV).',
+      shotsTitle: 'How it looks',
+      shotSchedule: 'Day schedule', shotEvent: 'Group class', shotProfile: 'Profile and passes', shotAnalytics: 'Analytics',
+      installTitle: 'How to install',
+      s1: 'Tap "Download for Android" on your phone and wait for the file.',
+      s2: 'Open the downloaded file. If the phone asks, allow "Install unknown apps" for your browser or Files. If Play Protect warns about an unknown app, tap "More details" → "Install anyway".',
+      s3: 'Tap "Install" and open Client Diary.',
+      note: 'The app is not on Google Play yet, so it is installed from a file. New versions install over the old one and keep your data. Languages: Bulgarian, Russian, Ukrainian, English.',
+      footer: 'Client Diary · by Zentoru · free, no ads',
+      privacy: 'Privacy policy'
+    }
+  };
+
+  // Download link: the latest GitHub release of this repository. On GitHub
+  // Pages (<owner>.github.io/<repo>/) owner and repo come from the address.
+  (function () {
+    const owner = location.hostname.endsWith('.github.io') ? location.hostname.split('.')[0] : null;
+    const repo = location.pathname.split('/').filter(Boolean)[0] || 'client-diary';
+    const link = document.getElementById('download');
+    link.href = owner
+      ? 'https://github.com/' + owner + '/' + repo + '/releases/latest/download/ClientDiary.apk'
+      : 'releases/latest/download/ClientDiary.apk';
+  })();
+
+  function setLang(lang) {
+    const t = T[lang] || T.bg;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-t]').forEach(el => { el.textContent = (t[el.dataset.t] || '').replace('{v}', version); });
+    document.querySelectorAll('a[data-t="privacy"]').forEach(a => { a.href = 'privacy.html?lang=' + lang; });
+    document.querySelectorAll('[data-alt]').forEach(el => { el.alt = t[el.dataset.alt] || ''; });
+    // Screenshots of the app in the same language.
+    document.querySelectorAll('[data-shot]').forEach(el => { el.src = 'assets/' + (T[lang] ? lang : 'bg') + '/' + el.dataset.shot + '.png'; });
+    document.querySelectorAll('.langs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    document.title = 'Client Diary — ' + t.title;
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  document.querySelectorAll('.langs button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  let initial = 'bg';
+  try {
+    // ?lang=bg in the link wins, then the last choice, then the browser.
+    const asked = new URLSearchParams(location.search).get('lang');
+    const saved = (asked && T[asked]) ? asked : localStorage.getItem('lang');
+    const browser = (navigator.language || 'bg').slice(0, 2);
+    initial = saved || (T[browser] ? browser : 'bg');
+  } catch (e) {}
+  setLang(initial);
+
+  // The current version from version.json, so a release updates one file.
+  fetch('version.json', { cache: 'no-store' })
+    .then(r => r.json())
+    .then(j => { if (j.version) { version = j.version; setLang(document.documentElement.lang); } })
+    .catch(() => {});
+</script>
+</body>
+</html>

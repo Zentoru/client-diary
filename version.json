@@ -1,0 +1,11 @@
+{
+  "version": "1.1.0",
+  "build": 24,
+  "url": "https://github.com/Zentoru/client-diary/releases/download/v1.1.0/ClientDiary.apk",
+  "notes": {
+    "bg": "• Напомняния точно навреме: приложението пита за разрешение „Будилници и напомняния“\n• „За приложението“ → „Политика за поверителност“\n• Нов адрес на страницата за изтегляне: zentoru.github.io/client-diary",
+    "ru": "• Напоминания минута в минуту: приложение спрашивает разрешение «Будильники и напоминания»\n• «О приложении» → «Политика конфиденциальности»\n• Новый адрес страницы загрузки: zentoru.github.io/client-diary",
+    "uk": "• Нагадування хвилина в хвилину: застосунок запитує дозвіл «Будильники й нагадування»\n• «Про застосунок» → «Політика конфіденційності»\n• Нова адреса сторінки завантаження: zentoru.github.io/client-diary",
+    "en": "• Reminders right on time: the app asks for the “Alarms & reminders” permission\n• About the app → Privacy policy\n• New address of the download page: zentoru.github.io/client-diary"
+  }
+}

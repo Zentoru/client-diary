@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Diary — Privacy policy</title>
+<meta name="description" content="Client Diary privacy policy: the app works offline and does not collect or share any data.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root {
+    --bg: #070b16;
+    --surface: #0f1626;
+    --text: #e8ecf6;
+    --muted: #9aa6c0;
+    --accent: #2f7dff;
+    --accent-2: #63a4ff;
+    --line: #22304d;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(47, 125, 255, .18), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  }
+  a { color: var(--accent-2); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header.top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; gap: 12px; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+  .brand img { width: 32px; height: 32px; border-radius: 8px; }
+  .langs { display: flex; gap: 4px; flex-wrap: wrap; }
+  .langs button {
+    background: transparent; color: var(--muted); border: 1px solid var(--line);
+    border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 14px; cursor: pointer;
+  }
+  .langs button[aria-pressed="true"] { color: var(--text); border-color: var(--accent); background: rgba(47,125,255,.15); }
+  h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 24px 0 8px; letter-spacing: -.01em; }
+  .date { color: var(--muted); margin: 0 0 24px; }
+  .summary {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 16px 20px; margin: 0 0 8px;
+  }
+  .summary p { margin: 0; }
+  h2 { font-size: 20px; margin: 32px 0 8px; }
+  ul { padding-left: 22px; }
+  li { margin: 4px 0; }
+  footer { padding: 32px 0 48px; margin-top: 40px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="./"><img src="assets/favicon.png" alt="">Client Diary</a>
+    <nav class="langs" aria-label="Language">
+      <button data-lang="bg">BG</button>
+      <button data-lang="ru">RU</button>
+      <button data-lang="uk">UA</button>
+      <button data-lang="en">EN</button>
+    </nav>
+  </header>
+  <main id="policy"></main>
+  <footer id="footer"></footer>
+</div>
+
+<script>
+  // The contact address for questions about privacy (also in Google Play).
+  const EMAIL = 'zentorudev@gmail.com';
+  const mail = '<a href="mailto:' + EMAIL + '">' + EMAIL + '</a>';
+
+  const T = {
+    ru: {
+      title: 'Политика конфиденциальности',
+      date: 'Действует с 16 ноября 2026 г.',
+      summary: 'Client Diary работает без интернета и <b>не собирает, не отправляет и не продаёт</b> никакие данные. Всё, что вы вводите, хранится только на вашем телефоне. У приложения нет аккаунтов, рекламы, аналитики и трекеров.',
+      sections: [
+        ['Кто мы', '<p>Client Diary — бесплатное приложение разработчика Zentoru (далее — «мы»). Эта политика объясняет, что происходит с данными в приложении Client Diary для Android, установленном из Google Play или со страницы загрузки <a href="./">zentoru.github.io/client-diary</a>.</p>'],
+        ['Какие данные хранит приложение', '<p>Только то, что вы вводите сами:</p><ul><li>клиенты: имя, фамилия, телефон, дата рождения, пол, заметки;</li><li>группы, шаблоны карт и событий, выданные карты, посещения, график, заметки к записям;</li><li>суммы, проценты и журнал аналитики;</li><li>настройки приложения.</li></ul><p>Эти данные хранятся в памяти телефона, в базе данных приложения. <b>Мы не получаем их и не имеем к ним доступа.</b> Они не передаются ни нам, ни третьим лицам.</p>'],
+        ['Разрешения', '<ul><li><b>Уведомления</b> — чтобы показывать напоминания о записях. Включаются в настройках приложения.</li><li><b>Будильники и напоминания</b> — чтобы напоминание пришло точно в срок. Без этого разрешения оно может прийти на несколько минут позже.</li><li><b>Запуск после перезагрузки</b> — чтобы восстановить напоминания после выключения телефона.</li><li><b>Вибрация</b> — для уведомлений.</li></ul><p>Приложение не запрашивает доступ к контактам, журналу звонков, местоположению, камере, микрофону или файлам. Нажатие на номер телефона открывает стандартную звонилку — звонит не приложение, а вы.</p>'],
+        ['Интернет', '<p><b>Версия из Google Play не имеет доступа к интернету</b> и обновляется через Google Play.</p><p>Версия со страницы загрузки обращается в интернет только для проверки обновлений: не чаще раза в сутки она читает файл с номером последней версии (version.json) с нашей страницы на GitHub Pages. Никакие данные из приложения при этом не отправляются. Как и любой сайт, GitHub может видеть IP-адрес запроса (см. <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">политику GitHub</a>). Проверку можно выключить: Настройки → «Проверять обновления автоматически».</p>'],
+        ['Резервные копии и экспорт', '<p>Файлы резервной копии (JSON) и выгрузки (CSV) создаются только по вашей команде. Куда их сохранить или кому отправить, решаете вы; дальше к ним применяются правила выбранного сервиса (например, мессенджера или облака). Файлы не зашифрованы — храните их бережно.</p><p>Если на телефоне включено системное резервное копирование Android, система может включить данные приложения в копию в вашем аккаунте Google. Этим управляют Android и Google по вашим настройкам; у нас доступа к таким копиям нет.</p>'],
+        ['Удаление данных', '<p>Удалить отдельные записи можно в приложении, все данные — в Настройках («Удалить данные»). При удалении приложения его данные удаляются с телефона. Поскольку у нас нет ваших данных, нам нечего удалять с нашей стороны.</p>'],
+        ['Если вы храните данные своих клиентов', '<p>Приложение — ваш личный рабочий дневник. Данные клиентов, которые вы вносите, обрабатываете вы, и вы отвечаете за соблюдение законов о персональных данных (например, GDPR в ЕС): сообщите клиентам, что ведёте записи, и храните телефон защищённым (блокировка экрана, шифрование).</p>'],
+        ['Дети', '<p>Приложение предназначено для специалистов, работающих с клиентами, и не рассчитано на детей. Мы сознательно не собираем никаких данных, в том числе данных детей.</p>'],
+        ['Изменения', '<p>Если политика изменится, новая версия появится на этой странице с новой датой.</p>'],
+        ['Контакты', '<p>Вопросы о конфиденциальности: ' + mail + '.</p>']
+      ],
+      home: 'Главная страница'
+    },
+    en: {
+      title: 'Privacy policy',
+      date: 'Effective November 16, 2026',
+      summary: 'Client Diary works offline and <b>does not collect, send or sell</b> any data. Everything you enter is stored only on your phone. The app has no accounts, ads, analytics or trackers.',
+      sections: [
+        ['Who we are', '<p>Client Diary is a free app by the developer Zentoru ("we"). This policy explains what happens to data in the Client Diary app for Android, installed from Google Play or from the download page <a href="./">zentoru.github.io/client-diary</a>.</p>'],
+        ['What data the app stores', '<p>Only what you enter yourself:</p><ul><li>clients: first and last name, phone, date of birth, gender, notes;</li><li>groups, card and event templates, issued cards, visits, the schedule, notes on entries;</li><li>amounts, percentages and the analytics log;</li><li>app settings.</li></ul><p>This data is stored on the phone, in the app\'s database. <b>We do not receive it and have no access to it.</b> It is not passed to us or to any third party.</p>'],
+        ['Permissions', '<ul><li><b>Notifications</b> — to show reminders about entries. Turned on in the app settings.</li><li><b>Alarms &amp; reminders</b> — so a reminder comes right on time. Without it, a reminder may come a few minutes late.</li><li><b>Run at startup</b> — to restore reminders after the phone restarts.</li><li><b>Vibration</b> — for notifications.</li></ul><p>The app does not ask for access to contacts, call log, location, camera, microphone or files. Tapping a phone number opens the standard dialer — you make the call, not the app.</p>'],
+        ['Internet', '<p><b>The Google Play version has no internet access</b> and is updated through Google Play.</p><p>The version from the download page goes online only to check for updates: at most once a day it reads a file with the latest version number (version.json) from our page on GitHub Pages. No data from the app is sent. Like any website, GitHub can see the IP address of the request (see <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub\'s privacy statement</a>). The check can be turned off: Settings → "Check for updates automatically".</p>'],
+        ['Backups and export', '<p>Backup (JSON) and export (CSV) files are created only when you ask for them. You decide where to save them or whom to send them to; from then on the rules of the chosen service (for example, a messenger or a cloud) apply. The files are not encrypted — keep them safe.</p><p>If Android system backup is turned on on your phone, the system may include the app\'s data in a backup in your Google account. This is managed by Android and Google according to your settings; we have no access to such backups.</p>'],
+        ['Deleting data', '<p>Single records can be deleted in the app, all data in Settings ("Delete data"). Uninstalling the app removes its data from the phone. Since we hold none of your data, there is nothing to delete on our side.</p>'],
+        ['If you store your clients\' data', '<p>The app is your personal work diary. You process the client data you enter and are responsible for following data protection laws (for example, the GDPR in the EU): let your clients know you keep records, and keep your phone protected (screen lock, encryption).</p>'],
+        ['Children', '<p>The app is meant for professionals who work with clients and is not directed at children. We knowingly collect no data at all, including children\'s data.</p>'],
+        ['Changes', '<p>If this policy changes, the new version will appear on this page with a new date.</p>'],
+        ['Contact', '<p>Privacy questions: ' + mail + '.</p>']
+      ],
+      home: 'Home page'
+    },
+    uk: {
+      title: 'Політика конфіденційності',
+      date: 'Діє з 16 листопада 2026 р.',
+      summary: 'Client Diary працює без інтернету і <b>не збирає, не надсилає і не продає</b> жодних даних. Усе, що ви вводите, зберігається лише на вашому телефоні. У застосунку немає облікових записів, реклами, аналітики й трекерів.',
+      sections: [
+        ['Хто ми', '<p>Client Diary — безкоштовний застосунок розробника Zentoru (далі — «ми»). Ця політика пояснює, що відбувається з даними в застосунку Client Diary для Android, встановленому з Google Play або зі сторінки завантаження <a href="./">zentoru.github.io/client-diary</a>.</p>'],
+        ['Які дані зберігає застосунок', '<p>Лише те, що ви вводите самі:</p><ul><li>клієнти: ім\'я, прізвище, телефон, дата народження, стать, нотатки;</li><li>групи, шаблони карт і подій, видані карти, відвідування, графік, нотатки до записів;</li><li>суми, відсотки та журнал аналітики;</li><li>налаштування застосунку.</li></ul><p>Ці дані зберігаються в пам\'яті телефона, у базі даних застосунку. <b>Ми їх не отримуємо і не маємо до них доступу.</b> Вони не передаються ні нам, ні третім особам.</p>'],
+        ['Дозволи', '<ul><li><b>Сповіщення</b> — щоб показувати нагадування про записи. Вмикаються в налаштуваннях застосунку.</li><li><b>Будильники й нагадування</b> — щоб нагадування надійшло точно вчасно. Без цього дозволу воно може надійти на кілька хвилин пізніше.</li><li><b>Запуск після перезавантаження</b> — щоб відновити нагадування після вимкнення телефона.</li><li><b>Вібрація</b> — для сповіщень.</li></ul><p>Застосунок не запитує доступу до контактів, журналу дзвінків, місцезнаходження, камери, мікрофона чи файлів. Натискання на номер телефону відкриває стандартну звонилку — дзвоните ви, а не застосунок.</p>'],
+        ['Інтернет', '<p><b>Версія з Google Play не має доступу до інтернету</b> і оновлюється через Google Play.</p><p>Версія зі сторінки завантаження звертається до інтернету лише для перевірки оновлень: не частіше разу на добу вона читає файл із номером останньої версії (version.json) з нашої сторінки на GitHub Pages. Жодні дані із застосунку при цьому не надсилаються. Як і будь-який сайт, GitHub може бачити IP-адресу запиту (див. <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">політику GitHub</a>). Перевірку можна вимкнути: Налаштування → «Перевіряти оновлення автоматично».</p>'],
+        ['Резервні копії та експорт', '<p>Файли резервної копії (JSON) і вивантаження (CSV) створюються лише за вашою командою. Куди їх зберегти чи кому надіслати, вирішуєте ви; далі до них застосовуються правила обраного сервісу (наприклад, месенджера чи хмари). Файли не зашифровані — зберігайте їх дбайливо.</p><p>Якщо на телефоні ввімкнено системне резервне копіювання Android, система може включити дані застосунку до копії у вашому обліковому записі Google. Цим керують Android і Google за вашими налаштуваннями; ми не маємо доступу до таких копій.</p>'],
+        ['Видалення даних', '<p>Окремі записи можна видалити в застосунку, усі дані — в Налаштуваннях («Видалити дані»). Під час видалення застосунку його дані видаляються з телефона. Оскільки у нас немає ваших даних, нам нічого видаляти зі свого боку.</p>'],
+        ['Якщо ви зберігаєте дані своїх клієнтів', '<p>Застосунок — ваш особистий робочий щоденник. Дані клієнтів, які ви вносите, обробляєте ви, і ви відповідаєте за дотримання законів про персональні дані (наприклад, GDPR у ЄС): повідомте клієнтам, що ведете записи, і тримайте телефон захищеним (блокування екрана, шифрування).</p>'],
+        ['Діти', '<p>Застосунок призначений для фахівців, які працюють із клієнтами, і не розрахований на дітей. Ми свідомо не збираємо жодних даних, зокрема даних дітей.</p>'],
+        ['Зміни', '<p>Якщо політика зміниться, нова версія з\'явиться на цій сторінці з новою датою.</p>'],
+        ['Контакти', '<p>Питання щодо конфіденційності: ' + mail + '.</p>']
+      ],
+      home: 'Головна сторінка'
+    },
+    bg: {
+      title: 'Политика за поверителност',
+      date: 'В сила от 16 ноември 2026 г.',
+      summary: 'Client Diary работи без интернет и <b>не събира, не изпраща и не продава</b> никакви данни. Всичко, което въвеждате, се пази само на телефона ви. Приложението няма акаунти, реклами, анализи и тракери.',
+      sections: [
+        ['Кои сме ние', '<p>Client Diary е безплатно приложение на разработчика Zentoru („ние“). Тази политика обяснява какво се случва с данните в приложението Client Diary за Android, инсталирано от Google Play или от страницата за изтегляне <a href="./">zentoru.github.io/client-diary</a>.</p>'],
+        ['Какви данни пази приложението', '<p>Само това, което въвеждате сами:</p><ul><li>клиенти: име, фамилия, телефон, дата на раждане, пол, бележки;</li><li>групи, шаблони на карти и събития, издадени карти, посещения, график, бележки към записите;</li><li>суми, проценти и дневникът на анализа;</li><li>настройките на приложението.</li></ul><p>Тези данни се пазят в паметта на телефона, в базата данни на приложението. <b>Ние не ги получаваме и нямаме достъп до тях.</b> Те не се предават нито на нас, нито на трети лица.</p>'],
+        ['Разрешения', '<ul><li><b>Известия</b> — за напомняния за записите. Включват се в настройките на приложението.</li><li><b>Будилници и напомняния</b> — за да дойде напомнянето точно навреме. Без това разрешение то може да закъснее с няколко минути.</li><li><b>Стартиране след рестарт</b> — за да се възстановят напомнянията след изключване на телефона.</li><li><b>Вибрация</b> — за известията.</li></ul><p>Приложението не иска достъп до контакти, списък с обаждания, местоположение, камера, микрофон или файлове. Докосването на телефонен номер отваря стандартното набиране — обаждате се вие, не приложението.</p>'],
+        ['Интернет', '<p><b>Версията от Google Play няма достъп до интернет</b> и се обновява чрез Google Play.</p><p>Версията от страницата за изтегляне използва интернет само за проверка на обновления: най-много веднъж дневно тя чете файл с номера на последната версия (version.json) от нашата страница в GitHub Pages. Не се изпращат никакви данни от приложението. Като всеки сайт, GitHub може да вижда IP адреса на заявката (вижте <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">политиката на GitHub</a>). Проверката може да се изключи: Настройки → „Автоматична проверка за обновления“.</p>'],
+        ['Резервни копия и експорт', '<p>Файловете с резервно копие (JSON) и експорт (CSV) се създават само по ваша команда. Вие решавате къде да ги запазите или на кого да ги изпратите; след това за тях важат правилата на избраната услуга (например месинджър или облак). Файловете не са шифровани — пазете ги внимателно.</p><p>Ако на телефона е включено системното архивиране на Android, системата може да включи данните на приложението в копие във вашия профил в Google. Това се управлява от Android и Google според вашите настройки; ние нямаме достъп до такива копия.</p>'],
+        ['Изтриване на данни', '<p>Отделни записи могат да се изтрият в приложението, всички данни — в Настройки („Изтриване на данни“). При деинсталиране на приложението данните му се изтриват от телефона. Тъй като нямаме ваши данни, няма какво да изтрием от наша страна.</p>'],
+        ['Ако пазите данни на свои клиенти', '<p>Приложението е вашият личен работен дневник. Данните на клиентите, които въвеждате, обработвате вие и отговаряте за спазването на законите за личните данни (например GDPR в ЕС): уведомете клиентите си, че водите записи, и пазете телефона си защитен (заключване на екрана, шифроване).</p>'],
+        ['Деца', '<p>Приложението е предназначено за специалисти, които работят с клиенти, и не е насочено към деца. Ние съзнателно не събираме никакви данни, включително данни на деца.</p>'],
+        ['Промени', '<p>Ако политиката се промени, новата версия ще се появи на тази страница с нова дата.</p>'],
+        ['Контакти', '<p>Въпроси за поверителността: ' + mail + '.</p>']
+      ],
+      home: 'Начална страница'
+    }
+  };
+
+  function setLang(lang) {
+    const t = T[lang] || T.en;
+    document.documentElement.lang = T[lang] ? lang : 'en';
+    document.title = 'Client Diary — ' + t.title;
+    let html = '<h1>' + t.title + '</h1><p class="date">' + t.date + '</p>' +
+      '<div class="summary"><p>' + t.summary + '</p></div>';
+    for (const [h, body] of t.sections) html += '<h2>' + h + '</h2>' + body;
+    document.getElementById('policy').innerHTML = html;
+    document.getElementById('footer').innerHTML =
+      'Client Diary · Zentoru · <a href="./?lang=' + document.documentElement.lang + '">' + t.home + '</a>';
+    document.querySelectorAll('.langs button').forEach(b =>
+      b.setAttribute('aria-pressed', String(b.dataset.lang === document.documentElement.lang)));
+    try { localStorage.setItem('lang', document.documentElement.lang); } catch (e) {}
+  }
+
+  document.querySelectorAll('.langs button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  (function () {
+    // ?lang=ru from the app wins, then the last choice, then the browser.
+    let saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    const asked = new URLSearchParams(location.search).get('lang');
+    const browser = (navigator.language || 'en').slice(0, 2);
+    const pick = [asked, saved, browser].find(l => l && T[l]) || 'en';
+    setLang(pick);
+  })();
+</script>
+</body>
+</html>
