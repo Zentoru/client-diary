@@ -1,11 +1,11 @@
 {
-  "version": "1.1.0",
-  "build": 24,
-  "url": "https://github.com/Zentoru/client-diary/releases/download/v1.1.0/ClientDiary.apk",
+  "version": "1.2.0",
+  "build": 25,
+  "url": "https://github.com/Zentoru/client-diary/releases/download/v1.2.0/ClientDiary.apk",
   "notes": {
-    "bg": "• Напомняния точно навреме: приложението пита за разрешение „Будилници и напомняния“\n• „За приложението“ → „Политика за поверителност“\n• Нов адрес на страницата за изтегляне: zentoru.github.io/client-diary",
-    "ru": "• Напоминания минута в минуту: приложение спрашивает разрешение «Будильники и напоминания»\n• «О приложении» → «Политика конфиденциальности»\n• Новый адрес страницы загрузки: zentoru.github.io/client-diary",
-    "uk": "• Нагадування хвилина в хвилину: застосунок запитує дозвіл «Будильники й нагадування»\n• «Про застосунок» → «Політика конфіденційності»\n• Нова адреса сторінки завантаження: zentoru.github.io/client-diary",
-    "en": "• Reminders right on time: the app asks for the “Alarms & reminders” permission\n• About the app → Privacy policy\n• New address of the download page: zentoru.github.io/client-diary"
+    "bg": "• Повече валути и „Без валута“\n• Пояснения под превключвателите за напомняния\n• „Нов шаблон“ направо от нов запис\n• Поправена празна област долу след връщане в приложението",
+    "ru": "• Больше валют и «Без валюты»\n• Пояснения под переключателями напоминаний\n• «Новый шаблон» прямо из новой записи\n• Исправлена пустая область внизу после возврата в приложение",
+    "uk": "• Більше валют і «Без валюти»\n• Пояснення під перемикачами нагадувань\n• «Новий шаблон» прямо з нового запису\n• Виправлено порожню область унизу після повернення в застосунок",
+    "en": "• More currencies and “No currency”\n• Hints under the reminder switches\n• “New template” right from a new entry\n• Fixed an empty area at the bottom after returning to the app"
   }
 }
