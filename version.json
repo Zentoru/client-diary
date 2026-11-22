@@ -1,11 +1,11 @@
 {
-  "version": "1.2.1",
-  "build": 26,
-  "url": "https://github.com/Zentoru/client-diary/releases/download/v1.2.1/ClientDiary.apk",
+  "version": "1.2.2",
+  "build": 27,
+  "url": "https://github.com/Zentoru/client-diary/releases/download/v1.2.2/ClientDiary.apk",
   "notes": {
-    "bg": "• Всякаква продължителност на събитието: „Друга…“ в списъка — часове и минути",
-    "ru": "• Любая продолжительность события: «Своя…» в списке — часы и минуты",
-    "uk": "• Будь-яка тривалість події: «Своя…» у списку — години й хвилини",
-    "en": "• Any event length: “Custom…” in the duration list — hours and minutes"
+    "bg": "Поправки:\n• Графикът се побира на екрана в хоризонтален режим и с едър шрифт\n• Часът на събитията вече не се разделя на два реда",
+    "ru": "Исправления:\n• График помещается на экране в горизонтальном режиме и с крупным шрифтом\n• Время событий больше не разрывается на две строки",
+    "uk": "Виправлення:\n• Графік вміщується на екрані в горизонтальному режимі та з великим шрифтом\n• Час подій більше не розривається на два рядки",
+    "en": "Bug fixes:\n• The schedule fits the screen in landscape and with large text\n• Event times no longer break into two lines"
   }
 }
